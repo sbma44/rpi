@@ -1,7 +1,7 @@
 # baseline update / tools
 sudo apt-get -y update
 sudo apt-get -y upgrade
-sudo apt-get -y install screen
+sudo apt-get -y install screen wic wicd-curses
 
 # ssh key
 mkdir ~/.ssh
