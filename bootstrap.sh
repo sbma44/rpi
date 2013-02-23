@@ -5,7 +5,7 @@ sudo apt-get -y install screen
 
 # ssh key
 mkdir ~/.ssh
-curl https://sbma44.s3.amazonaws.com/rpi/tom_lee_dsa_key.pub >> ~/.ssh/authorized_keys
+curl https://raw.github.com/sbma44/rpi/master/tom_lee_dsa_key.pub >> ~/.ssh/authorized_keys
 
 # python / git
 sudo apt-get -y install python-setuptools git
@@ -15,5 +15,5 @@ sudo easy_install pip
 sudo pip install virtualenvwrapper
 mkdir ~/Devel
 mkdir ~/.virtualenvs
-curl https://sbma44.s3.amazonaws.com/rpi/rpi_virtualenvconfig.txt >> ~/.bashrc
+curl https://raw.github.com/sbma44/rpi/master/rpi_virtualenvconfig.txt >> ~/.bashrc
 source ~/.bashrc
