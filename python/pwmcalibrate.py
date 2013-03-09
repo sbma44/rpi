@@ -50,9 +50,9 @@ class PWMCalibrator(object):
 		# max the display, ask for trim pot adjustment
 		wiringpi.pwmWrite(self.pin, PWM_MAX)
 		if steps==None:
-			steps = int(input("Calibrate the trim pot until the meter is at maximum, then enter the desired number of steps and press <enter>"))
+			steps = int(raw_input("Calibrate the trim pot until the meter is at maximum, then enter the desired number of steps and press <enter>"))
 		else:
-			input("Calibrate the trim pot until the meter is at maximum (%d), then press <enter>" % steps)
+			raw_input("Calibrate the trim pot until the meter is at maximum (%d), then press <enter>" % steps)
 		
 		# set the top step
 		self.calibration.append((steps, PWM_MAX))
@@ -62,7 +62,14 @@ class PWMCalibrator(object):
 		for i in range(PWM_MAX, 0, -1):			
 			wiringpi.pwmWrite(self.pin, i)
 
-			stdscr.addstr(0,10,"Press the spacebar when the meter reads %s%d" % (curses.COLOR_RED, current_step))
+			stdscr.addstr(0,0,"Press the spacebar when the meter reads %d" % (current_step))
+			
+			stdscr.addstr(2,0,"=== Captured Calibration Values ===")
+			stdscr.addstr(3,0,"      step      |        value     ")
+			stdscr.addstr(4,0,"-----------------------------------")
+			for (i,x) in enumerate(self.calibration):
+				std.addstr(4+i, 7 - len(str(x[0])), str(x[0]))
+				std.addstr(4+i, 30 - len(str(x[1])), str(x[1])
 			stdscr.refresh()
 
 			key = stdscr.getch()
