@@ -69,7 +69,7 @@ class PWMCalibrator(object):
 			stdscr.addstr(4,0,"-----------------------------------")
 			for (i,x) in enumerate(self.calibration):
 				std.addstr(4+i, 7 - len(str(x[0])), str(x[0]))
-				std.addstr(4+i, 30 - len(str(x[1])), str(x[1])
+				std.addstr(4+i, 30 - len(str(x[1])), str(x[1]))
 			stdscr.refresh()
 
 			key = stdscr.getch()
