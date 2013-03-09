@@ -49,7 +49,7 @@ class PWMCalibrator(object):
 
 		# max the display, ask for trim pot adjustment
 		wiringpi.pwmWrite(self.pin, PWM_MAX)
-		if steps=None:
+		if steps==None:
 			steps = int(input("Calibrate the trim pot until the meter is at maximum, then enter the desired number of steps and press <enter>"))
 		else:
 			input("Calibrate the trim pot until the meter is at maximum (%d), then press <enter>" % steps)
