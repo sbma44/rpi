@@ -1,6 +1,6 @@
 import time, json, curses, wiringpi
 
-PWM_MAX = 1024
+PWM_MAX = 1023
 DEFAULT_PIN = 1
 DEFAULT_CALIBRATION_FILENAME = "pwmcalibrate.json"
 
