@@ -59,7 +59,7 @@ class PWMCalibrator(object):
 
 		# step down through the PWM range
 		current_step = steps - 1
-		for i = range(PWM_MAX, 0, -1):			
+		for i in range(PWM_MAX, 0, -1):			
 			wiringpi.pwmWrite(self.pin, i)
 
 			stdscr.addstr(0,10,"Press the spacebar when the meter reads %s%d" % (curses.COLOR_RED, current_step))
