@@ -1,7 +1,7 @@
 # baseline update / tools
 sudo apt-get -y update
 sudo apt-get -y upgrade
-sudo apt-get -y install screen wic wicd-curses
+sudo apt-get -y install vim screen wicd wicd-curses
 
 # ssh key
 mkdir ~/.ssh
