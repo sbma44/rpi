@@ -6,7 +6,7 @@ DEFAULT_CALIBRATION_FILENAME = "calibration.json"
 
 class PWMCalibrator(object):
 	"""Helper class for calibrating PWM-driven VU meters"""
-	def __init__(self, pin=DEFAULT_PIN, calibration_file=None, smoothing=False):
+	def __init__(self, pin=DEFAULT_PIN, calibration_file=None, smoothing=None):
 		super(PWMCalibrator, self).__init__()
 		
 		self.pin = pin
@@ -16,7 +16,10 @@ class PWMCalibrator(object):
 
 		self.pwm_value = 0
 		self.calibration = []
-		self.smoothing = smoothing
+                if smoothing is True:
+                        self.smoothing = 0.01
+                else:	
+		        self.smoothing = smoothing
 
 		if calibration_file is not None:
 			self.load(calibration_file)
@@ -28,26 +31,32 @@ class PWMCalibrator(object):
 
 	def _calculatePWM(self,value):
 		bottom_step = 0
+                pwm_value = 0
+
+		if value<self.calibration[0][0] or value>self.calibration[-1][0]:
+			raise Exception("Requested value is outside of calibration range [%d, %d]" % (self.calibration[0][0], self.calibration[-1][0]))
+
+                # check for an exact value match & return it if found
+                for x in self.calibration:
+                        if x[0]==value:
+                                return x[1]
+
 		for i in range(0, len(self.calibration)-1):
 			if value>=self.calibration[i][0] and value<self.calibration[i+1][0]:
 				bottom_step = i
 
-		# if it's an exact match (we have a specific lookup for this value) then use that precise calibration
-		if value==self.calibration[bottom_step][0]:
-			wiringpi.pwmWrite(self.pin, self.calibration[bottom_step][1])
-		else:
-			pct_diff = (value - self.calibration[bottom_step][0]) / (1.0 * (self.calibration[bottom_step + 1][0] - self.calibration[bottom_step][0]))
-			pwm_value = int(self.calibration[bottom_step][1] + round(pct_diff * (self.calibration[bottom_step + 1][1] - self.calibration[bottom_step][1])))
+		pct_diff = (value - self.calibration[bottom_step][0]) / (1.0 * (self.calibration[bottom_step + 1][0] - self.calibration[bottom_step][0]))
+		pwm_value = int(self.calibration[bottom_step][1] + round(pct_diff * (self.calibration[bottom_step + 1][1] - self.calibration[bottom_step][1])))
 		return pwm_value
 
 	def setPWM(self, value):
 		target_pwm_value = self._calculatePWM(value)
-		if smoothing:
+		if self.smoothing is not None:
 			while self.pwm_value!=target_pwm_value:
 				delta = self.pwm_value>target_pwm_value and -1 or 1
 				wiringpi.pwmWrite(self.pin, self.pwm_value + delta)
 				self.pwm_value = self.pwm_value + delta
-				time.sleep(0.01)
+				time.sleep(self.smoothing)
 		else:
 			wiringpi.pwmWrite(self.pin, target_pwm_value)
 			self.pwm_value = target_pwm_value
