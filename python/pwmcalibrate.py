@@ -88,7 +88,7 @@ class PWMCalibrator(object):
 		self.calibration.sort(lambda x: x[0])
 
 
-	def save(self, filename=DEFAULT_CALIBRATION_FILENAME)
+	def save(self, filename=DEFAULT_CALIBRATION_FILENAME):
 		f = open(filename, 'w')
 		json.dump(self.calibration, f)
 		f.close()
