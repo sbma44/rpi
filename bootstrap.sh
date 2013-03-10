@@ -8,7 +8,7 @@ mkdir ~/.ssh
 curl https://raw.github.com/sbma44/rpi/master/tom_lee_dsa_key.pub >> ~/.ssh/authorized_keys
 
 # python / git
-sudo apt-get -y install python-setuptools git
+sudo apt-get -y install python-setuptools git python-dev wiringpi
 sudo easy_install pip
 
 # virtualenv
