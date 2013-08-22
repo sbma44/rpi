@@ -12,7 +12,7 @@ sudo apt-get -y install python-setuptools python-dev git
 sudo easy_install pip
 
 # virtualenv
-sudo pip install virtualenvwrapper wiringpi
+sudo pip install virtualenvwrapper wiringpi wiringpi2
 mkdir ~/Devel
 mkdir ~/.virtualenvs
 curl https://raw.github.com/sbma44/rpi/master/rpi_virtualenvconfig.txt >> ~/.bashrc
