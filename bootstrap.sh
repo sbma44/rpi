@@ -1,7 +1,7 @@
 # baseline update / tools
 sudo apt-get -y update
 sudo apt-get -y upgrade
-sudo apt-get -y install vim screen wicd wicd-curses
+sudo apt-get -y install vim screen libnss-mdns
 
 # ssh key
 mkdir ~/.ssh
