@@ -27,5 +27,5 @@ for line in lines:
 	else:
 		out_lines.append(line)
 f = open('/etc/watchdog.conf', 'w')
-f.writelines()
+f.writelines(out_lines)
 f.close()
