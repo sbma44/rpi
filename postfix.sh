@@ -13,11 +13,11 @@ smtp_sasl_security_options = noanonymous
 smtp_tls_CAfile = /etc/postfix/cacert.pem
 smtp_use_tls = yes" >> /etc/postfix/main.cf
 
-echo "Enter @gmail.com username: "
-read username
-echo "Enter @gmail.com password: "
+echo "Enter email address: "
+read email
+echo "Enter password: "
 read password
-echo "[smtp.gmail.com]:587    $username@gmail.com:$password" > /etc/postfix/sasl_passwd
+echo "[smtp.gmail.com]:587    $email:$password" > /etc/postfix/sasl_passwd
 
 chmod 400 /etc/postfix/sasl_passwd
 postmap /etc/postfix/sasl_passwd

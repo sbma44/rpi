@@ -11,9 +11,17 @@ curl https://raw.github.com/sbma44/rpi/master/tom_lee_dsa_key.pub >> ~/.ssh/auth
 sudo apt-get -y install python-setuptools python-dev git 
 sudo easy_install pip
 
+pip install pycrypto
+
 # virtualenv
 sudo pip install virtualenvwrapper wiringpi wiringpi2
 mkdir ~/Devel
 mkdir ~/.virtualenvs
 curl https://raw.github.com/sbma44/rpi/master/rpi_virtualenvconfig.txt >> ~/.bashrc
 source ~/.bashrc
+
+# wifi & preferred networks
+sudo python setup_wireless.py
+
+# mail relaying
+sudo postfix.sh
