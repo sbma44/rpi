@@ -1,5 +1,5 @@
 cd /tmp
-curl https://github.com/aeberhardo/phantomjs-linux-armv6l/archive/master.zip -O
+wget https://github.com/aeberhardo/phantomjs-linux-armv6l/archive/master.zip
 unzip master.zip
 cd phantomjs-linux-armv6l-master
 bunzip2 *.bz2 && tar xf *.tar
