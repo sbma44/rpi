@@ -1,4 +1,4 @@
-import os
+import os, re
 
 # modprobe
 os.system('sudo modprobe bcm2708_wdog')
@@ -22,7 +22,7 @@ lines = f.readlines()
 f.close()
 out_lines = []
 for line in lines:
-	if line=='#watchdog-device = /dev/watchdog':
+	if re.search(r'^\s*#\s*watchdog-device\s*=\s*/dev/watchdog', line) is not None:
 		out_lines.append('watchdog-device = /dev/watchdog')
 	else:
 		out_lines.append(line)
