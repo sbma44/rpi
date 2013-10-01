@@ -23,5 +23,5 @@ source ~/.bashrc
 # wifi & preferred networks
 sudo python setup_wireless.py
 
-# mail relaying
+# email
 sudo postfix.sh
