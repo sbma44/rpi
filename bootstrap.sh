@@ -25,3 +25,11 @@ sudo python setup_wireless.py
 
 # email
 sudo postfix.sh
+
+# remove swapfile for SD card longevity
+sudo swapoff --all
+sudo apt-get remove dphys-swapfile
+
+# TODO: more improvements from http://raspberrypi.stackexchange.com/questions/169/how-can-i-extend-the-life-of-my-sd-card
+
+
