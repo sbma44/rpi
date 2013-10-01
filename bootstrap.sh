@@ -1,7 +1,7 @@
 # baseline update / tools
 sudo apt-get -y update
 sudo apt-get -y upgrade
-sudo apt-get -y install vim screen libnss-mdns watchdog chkconfig
+sudo apt-get -y install vim screen libnss-mdns 
 
 # ssh key
 mkdir ~/.ssh
@@ -10,8 +10,6 @@ curl https://raw.github.com/sbma44/rpi/master/tom_lee_dsa_key.pub >> ~/.ssh/auth
 # python / git
 sudo apt-get -y install python-setuptools python-dev git 
 sudo easy_install pip
-
-pip install pycrypto
 
 # virtualenv
 sudo pip install virtualenvwrapper wiringpi wiringpi2
