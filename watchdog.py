@@ -11,9 +11,10 @@ if not 'bcm2708_wdog' in lines:
 f.close()
 f = open('/etc/modules', 'w')
 f.writelines(lines)
+f.write('\n')
 f.close()
 
-os.system('sudo apt-get install watchdog chkconfig')
+os.system('sudo apt-get -y install watchdog chkconfig')
 os.system('chkconfig watchdog on')
 os.system('sudo /etc/init.d/watchdog start')
 
@@ -28,4 +29,5 @@ for line in lines:
 		out_lines.append(line)
 f = open('/etc/watchdog.conf', 'w')
 f.writelines(out_lines)
+f.write('\n')
 f.close()

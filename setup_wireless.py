@@ -1,5 +1,7 @@
 import simple_crypto, os
 
+os.system('pip install pycrypto')
+
 f = open('wpa_supplicant.conf.encrypted', 'r')
 wpa_supp = simple_crypto.decrypt(f.read())
 f.close()
