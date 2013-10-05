@@ -1,0 +1,77 @@
+import os, sys
+
+path = sys.argv[1]
+service_name = path.split('/')[-2]
+
+initfile = """#!/bin/bash
+#
+# This starts and stops %(service_name)s
+#
+### BEGIN INIT INFO
+# Provides:          %(service_name)s
+# Required-Start:    $network
+# Required-Stop:
+# Short-Description: %(service_name)s
+# Description:       Does something neat with Raspberry Pi PWM pins (probably)
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+### END INIT INFO
+
+
+# Source function library.
+. /lib/lsb/init-functions
+
+NAME=%(service_name)s
+DAEMON="%(path)s"
+PIDFILE=/var/run/$NAME.pid
+DAEMON_ARGS=""
+
+[ -x $binary ] || exit 0
+
+RETVAL=0
+
+start() {
+    echo -n "Starting %(service_name)s daemon: "
+    sudo start-stop-daemon --start --oknodo --background --quiet --pidfile "$PIDFILE" --make-pidfile --background --exec "$DAEMON" -- $DAEMON_ARGS
+    log_end_msg $?
+}
+
+stop() {
+    echo -n "Shutting down %(service_name)s daemon: "
+    start-stop-daemon --stop --quiet --pidfile "$PIDFILE" --retry 1 --oknodo
+    log_end_msg $?
+}
+
+restart() {
+    stop
+    sleep 1
+    start
+}
+
+case "$1" in
+    start)
+        start
+    ;;
+    stop)
+        stop
+    ;;
+    status)
+        status stephmeter
+    ;;
+    restart)
+        restart
+    ;;
+    *)
+        echo "Usage: $0 {start|stop|status|restart}"
+    ;;
+esac
+
+exit 0
+""" % {'path': path, 'service_name': service_name}
+
+f = open('/etc/init.d/%s' % service_name, 'w')
+f.write(initfile)
+f.close()
+
+os.system('sudo chmod +x /etc/init.d/%s' % service_name)
+os.system('sudo update-rc.d /etc/init.d/%s defaults' % service_name)
