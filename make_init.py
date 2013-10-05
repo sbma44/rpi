@@ -1,5 +1,8 @@
 import os, sys
 
+if os.getuid()!=0:
+	raise Exception('This script must be run as root')
+
 path = sys.argv[1]
 service_name = path.split('/')[-2]
 
