@@ -77,4 +77,4 @@ f.write(initfile)
 f.close()
 
 os.system('sudo chmod +x /etc/init.d/%s' % service_name)
-os.system('sudo update-rc.d /etc/init.d/%s defaults' % service_name)
+os.system('sudo update-rc.d %s defaults' % service_name)
