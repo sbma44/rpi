@@ -1,5 +1,8 @@
 import simple_crypto, os
 
+if os.getuid()!=0:
+	raise Exception('This script must be run as root')
+
 os.system('pip install pycrypto')
 
 f = open('wpa_supplicant.conf.encrypted', 'r')
