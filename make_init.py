@@ -1,7 +1,7 @@
 import os, sys
 
 if os.getuid()!=0:
-	raise Exception('This script must be run as root')
+    raise Exception('This script must be run as root')
 
 path = sys.argv[1]
 service_name = path.split('/')[-2]
@@ -35,7 +35,9 @@ RETVAL=0
 
 start() {
     echo -n "Starting %(service_name)s daemon: "
-    sudo start-stop-daemon --start --oknodo --background --quiet --pidfile "$PIDFILE" --make-pidfile --background --exec "$DAEMON" -- $DAEMON_ARGS
+    start-stop-daemon --start --quiet    \
+    --make-pidfile --pidfile $PIDFILE --background       \
+    --exec /bin/bash -- -c "$DAEMON $DAEMON_ARGS > /var/log/%(service_name)s.log 2>&1"
     log_end_msg $?
 }
 
