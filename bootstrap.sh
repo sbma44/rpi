@@ -34,4 +34,6 @@ sudo apt-get -y remove dphys-swapfile
 # watchdog
 sudo python watchdog.py
 
+# optionally, run `sudo phantomjs.sh` as well to install that software
+
 # TODO: more improvements from http://raspberrypi.stackexchange.com/questions/169/how-can-i-extend-the-life-of-my-sd-card
