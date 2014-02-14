@@ -3,7 +3,7 @@ rpi
 
 Raspberry Pi bootstrap resources. Designed for my own use, but others might find something useful here. 
 
-Features:
+The following features are included. See _bootstrap.sh_ for usage and details about which sub-script does what.
 
 * Installs Bonjour so you can get to the Pi without looking up its DHCP-delivered IP address
 * Gets a decent Python development environment in place, complete with virtualenv
