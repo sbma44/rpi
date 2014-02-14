@@ -24,9 +24,6 @@ source $HOME/.bashrc
 pip install pycrypto
 sudo python setup_wireless.py
 
-# email
-sudo postfix.sh
-
 # remove swapfile for SD card longevity
 sudo swapoff --all
 sudo apt-get -y remove dphys-swapfile
@@ -34,6 +31,10 @@ sudo apt-get -y remove dphys-swapfile
 # watchdog
 sudo python watchdog.py
 
-# optionally, run `sudo phantomjs.sh` as well to install that software
+# want to install email routing through a gmail account?
+# sudo ./postfix.sh
+
+# want to install phantom.js?
+# sudo ./phantomjs.sh
 
 # TODO: more improvements from http://raspberrypi.stackexchange.com/questions/169/how-can-i-extend-the-life-of-my-sd-card
