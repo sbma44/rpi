@@ -21,8 +21,10 @@ curl https://raw.github.com/sbma44/rpi/master/rpi_virtualenvconfig.txt >> $HOME/
 source $HOME/.bashrc
 
 # wifi & preferred networks
-pip install pycrypto
-sudo python setup_wireless.py
+# NOTE: these lines require the use of @sbma44's private encryption key. which you (hopefully)
+# don'e have. So instead just have a look at the sample wifi config files, okay?
+#pip install pycrypto
+#sudo python setup_wireless.py
 
 # remove swapfile for SD card longevity
 sudo swapoff --all
