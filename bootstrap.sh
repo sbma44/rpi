@@ -1,3 +1,5 @@
+#!/bin/sh
+
 HOME=/home/pi
 
 # baseline update / tools
