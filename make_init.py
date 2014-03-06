@@ -13,6 +13,6 @@ autostart=true
 autorestart=true""" % {'path': path, 'service_name': service_name}
 
 f = open('/etc/supervisor/conf.d/%s.conf' % service_name, 'w')
-f.write(initfile)
+f.write(supervisor_conf)
 f.close()
 
